@@ -25,6 +25,7 @@ clone_buildroot() {
 make_buildroot() {
     cd buildroot
     make BR2_EXTERNAL=../../.. m5stack_module_llm_4_19_defconfig
+    make menuconfig    # この行を追加
     [[ -v ROOTFS_SIZE ]] && sed -i 's/^\(BR2_TARGET_ROOTFS_EXT2_SIZE=\).*$/\1"'"${ROOTFS_SIZE}"'"/' .config
     make -j `nproc`
 }
